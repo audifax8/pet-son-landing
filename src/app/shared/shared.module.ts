@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 // import { YouTubePlayerModule } from '@angular/youtube-player';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { FormService, CommandService } from './services';
 
 const MODULES = [
   CommonModule,
@@ -14,6 +15,11 @@ const COMPONENTS = [
   CarouselComponent
 ];
 
+const SERVICES = [
+  FormService,
+  CommandService
+];
+
 @NgModule({
   declarations: [
     ...COMPONENTS
@@ -23,6 +29,8 @@ const COMPONENTS = [
   ],
   imports: [
     ...MODULES
-  ]
+  ],
+  providers:
+  [...SERVICES]
 })
 export class SharedModule { }
