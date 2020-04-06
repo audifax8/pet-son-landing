@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { UserService } from '../../shared/services';
 
 @Component({
   selector: 'app-nav',
@@ -19,10 +21,20 @@ export class NavComponent implements OnInit {
   public activeId = '';
 
   constructor(
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public userS: UserService,
+    private afAuth: AngularFireAuth,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+  }
+
+  public logout() {
+    /*this.afAuth.auth.signOut().then((res) => {
+      this.router.navigate(['/']);
+      this.userS.setUser(null);
+    });*/
   }
 
 }

@@ -23,5 +23,6 @@
     </form>
     <hr class="my-4">
     <pre *ngIf="isDevMode">{{ loginForm.value | json}}</pre>
-    <pre *ngIf="isDevMode">{{ user | async | json}}</pre>
+    <pre *ngIf="isDevMode">{{ user$ | async | json}}</pre>
+    <pre *ngIf="isDevMode">{{ error$ | async}}</pre>
 </div>

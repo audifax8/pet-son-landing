@@ -1,2 +1,3 @@
 export * from './team-member';
-export { IFormCommand } from './form-command';
+export * from './form-command';
+export * from './pet-type';
