@@ -1,20 +1,19 @@
-import { Component, OnInit, isDevMode } from '@angular/core';
+import { Component, OnInit, OnDestroy ,isDevMode } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
-import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase/app';
 import { CommandService, FormService, UserService } from '../../../shared/services';
 import { CommandValidationRule } from '../../../util';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   public user$: Observable<any>;
+  private subscription: Subscription;
 
   public error$: Observable<any>;
 
@@ -39,7 +38,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loadForm();
     this.user$ = this.userS.user$;
+    this.subscription = this.user$.subscribe(
+      () => this.router.navigate(['back-office'])
+    );
     this.error$ = this.userS.errorMessage$;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   private loadForm(): void {

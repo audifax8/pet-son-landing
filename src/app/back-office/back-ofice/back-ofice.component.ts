@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BackOficeComponent implements OnInit {
 
+  public links = [
+    { title: 'Nueva mascota', fragment: 'new-pet' },
+    { title: 'Nuevo tipo mascota', fragment: 'pet-type' },
+    { title: 'Crear miembro equipo', fragment: 'new-team-member' },
+    { title: 'Administrar equipo', fragment: '#' },
+    { title: 'Todas las mascotas', fragment: 'pets' }
+  ];
+
   constructor() { }
 
   ngOnInit(): void {

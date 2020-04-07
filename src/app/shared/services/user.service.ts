@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase/app';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
@@ -14,7 +15,8 @@ export class UserService {
   errorMessage$ = this.errorMessageSubject.asObservable();
 
   constructor(
-    private afAuthService: AngularFireAuth
+    private afAuthService: AngularFireAuth,
+    private router: Router
   ) {
     this.afAuthService.user
       .pipe(
@@ -30,16 +32,27 @@ export class UserService {
       email,
       password
     ).then(
-      (data) => this.userSubject.next(data.user)
+      data => {
+        this.errorMessageSubject.next(null);
+        this.userSubject.next(data.user);
+        this.router.navigate(['back-office']);
+      }
     ).catch(
-      (error) => this.errorMessageSubject.next(error)
+      error => {
+        this.userSubject.next(null);
+        this.errorMessageSubject.next(error);
+      }
     );
   }
 
   public logout() {
     this.afAuthService.auth.signOut()
       .then(
-        () => this.userSubject.next(null)
+        () => {
+          this.userSubject.next(null);
+          this.errorMessageSubject.next(null);
+          this.router.navigate(['back-office/login']);
+        }
       ).catch(
         (error) => this.errorMessageSubject.next(error)
       );

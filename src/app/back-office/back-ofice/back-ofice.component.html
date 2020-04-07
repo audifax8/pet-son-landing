@@ -1,1 +1,10 @@
-<app-menu-back-office></app-menu-back-office>
+<div class="wrapper">
+     <nav id="sidebar">
+        <ul class="list-unstyled components">
+            <li *ngFor="let link of links" class="active">
+                <a [routerLink]="link.fragment" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{link.title}}</a>
+            </li>
+        </ul>
+    </nav>
+    <router-outlet></router-outlet>
+</div>
