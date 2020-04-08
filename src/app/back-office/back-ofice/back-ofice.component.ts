@@ -11,7 +11,8 @@ export class BackOficeComponent implements OnInit {
     { title: 'Nueva mascota', fragment: 'new-pet' },
     { title: 'Nuevo tipo mascota', fragment: 'pet-type' },
     { title: 'Crear miembro equipo', fragment: 'new-team-member' },
-    { title: 'Administrar equipo', fragment: '#' },
+    { title: 'Administrar mascotas', fragment: 'manage-pets' },
+    { title: 'Administrar equipo', fragment: 'manage-team' },
     { title: 'Todas las mascotas', fragment: 'pets' }
   ];
 

@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy ,isDevMode } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
-import { CommandService, FormService, UserService } from '../../../shared/services';
+import { CommandService, FormService, UserService, ExternalLibsService } from '../../../shared/services';
 import { CommandValidationRule } from '../../../util';
 import { Observable, Subscription } from 'rxjs';
 
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public user$: Observable<any>;
   private subscription: Subscription;
 
-  public error$: Observable<any>;
+  public error$: Observable<string>;
 
   public loginForm: FormGroup;
 
@@ -26,14 +26,17 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
 
-  public isDevMode = isDevMode();
+  public isDevMode: boolean;
 
   constructor(
     private commandS: CommandService,
     public formS: FormService,
     private router: Router,
-    private userS: UserService
-  ) { }
+    private userS: UserService,
+    private externalLibsS: ExternalLibsService
+  ) {
+    this.isDevMode = this.externalLibsS.isDevMode;
+  }
 
   ngOnInit(): void {
     this.loadForm();

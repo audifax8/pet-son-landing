@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 // import { YouTubePlayerModule } from '@angular/youtube-player';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
-import { FormService, CommandService, UserService } from './services';
+import { FormService, CommandService, UserService, ExternalLibsService } from './services';
 
 const MODULES = [
   CommonModule,
@@ -18,7 +18,8 @@ const COMPONENTS = [
 const SERVICES = [
   FormService,
   CommandService,
-  UserService
+  UserService,
+  ExternalLibsService
 ];
 
 @NgModule({
