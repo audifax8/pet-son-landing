@@ -1,9 +1,17 @@
 import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
-import { CommandService, FormService, UserService, ExternalLibsService } from '../../../shared/services';
-import { CommandValidationRule } from '../../../util';
 import { Observable, Subscription } from 'rxjs';
+import {
+  CommandService,
+  FormService,
+  UserService,
+  ExternalLibsService
+} from '../../../shared/services';
+import {
+  CommandValidationRule,
+  CommandInputValue
+} from '../../../util';
 
 @Component({
   selector: 'app-login',
@@ -57,11 +65,26 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.commandS.addCommand(new CommandValidationRule(
       this.loginForm,
       this.loginConstants.USER_NAME,
-      [Validators.required]));
+      [Validators.required])
+    );
     this.commandS.addCommand(new CommandValidationRule(
       this.loginForm,
       this.loginConstants.PASSWORD,
-      [Validators.required, Validators.pattern(this.regexPassword)]));
+      [Validators.required, Validators.pattern(this.regexPassword)])
+    );
+
+    if(this.isDevMode) {
+      this.commandS.addCommand(new CommandInputValue(
+        this.loginForm,
+        this.loginConstants.USER_NAME,
+        'amarele1991@gmail.com')
+      );
+      this.commandS.addCommand(new CommandInputValue(
+        this.loginForm,
+        this.loginConstants.PASSWORD,
+        'Grymmjow8@')
+      );
+    }
     this.commandS.executeCommands();
 
   }

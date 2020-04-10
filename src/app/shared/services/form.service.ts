@@ -19,7 +19,7 @@ export class FormService {
    */
   public isTouchedOrDirtyAndInvalid(inputName: string, form: FormGroup): boolean {
     const inputFormControl = form.get(inputName) as FormControl;
-    return !((inputFormControl.touched || inputFormControl.dirty) && inputFormControl.invalid);
+    return ((inputFormControl.touched || inputFormControl.dirty) && inputFormControl.invalid);
   }
 
   /**

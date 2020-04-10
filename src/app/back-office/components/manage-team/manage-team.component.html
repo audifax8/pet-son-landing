@@ -1,1 +1,31 @@
-<p>manage-team works!</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Ocupación</th>
+      <th scope="col">Rol</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let teamMember of teamMembers$ | async; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+        <td>{{ teamMember.name }}</td>
+        <td>{{ teamMember.occupation }}</td>
+        <td>{{ teamMember.role }}</td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="edit(teamMember.firebaseId)">
+            Editar
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="delete(teamMember.firebaseId)">
+            Eliminar
+          </button>
+        </td>
+    </tr>
+  </tbody>
+</table>
+<pre *ngIf="isDevMode"> {{ teamMembers$ | async | json }} </pre>
