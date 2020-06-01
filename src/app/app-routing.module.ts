@@ -9,7 +9,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./team/team.module').then(m => m.TeamModule)
   },
-  {
+  /*{
     path: 'contact',
     loadChildren: () =>
       import('./contact/contact.module').then(m => m.ContactModule)
@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'sponsors',
     loadChildren: () =>
       import('./sponsors/sponsors.module').then(m => m.SponsorsModule)
-  },
+  },*/
   {
     path: 'pets',
     loadChildren: () =>

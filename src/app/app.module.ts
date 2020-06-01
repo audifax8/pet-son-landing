@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 /** Firebase */
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -34,7 +32,6 @@ const config = {
 const MODULES = [
   BrowserModule,
   AppRoutingModule,
-  NgbModule,
   HttpClientModule,
   AngularFireModule.initializeApp(config),
   AngularFirestoreModule, // firestore
