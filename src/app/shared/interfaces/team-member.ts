@@ -1,4 +1,4 @@
-export interface TeamMember {
+export interface ITeamMember {
     id: string,
     name: string,
     picture: string,

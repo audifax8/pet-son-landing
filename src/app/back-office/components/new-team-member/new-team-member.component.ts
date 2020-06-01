@@ -148,6 +148,7 @@ export class NewTeamMemberComponent implements OnInit {
         ).then(
           url => {
             this.avatarFullPath = url;
+            // console.log(this.avatarFullPath);
           }
         );
         break;
