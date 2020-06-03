@@ -1,4 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -10,7 +13,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { CoreModule } from './core/core.module';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
@@ -31,14 +37,18 @@ const config = {
 
 const MODULES = [
   BrowserModule,
+  BrowserAnimationsModule,
   AppRoutingModule,
   HttpClientModule,
   AngularFireModule.initializeApp(config),
   AngularFirestoreModule, // firestore
   AngularFireAuthModule, // auth
   AngularFireStorageModule,
-  CoreModule,
-  SharedModule
+  SharedModule,
+  /* NGX Bootstrapt */
+  AccordionModule.forRoot(),
+  BsDropdownModule.forRoot(),
+  PaginationModule.forRoot()
 ];
 
 const COMPONENTS = [
@@ -54,6 +64,8 @@ const COMPONENTS = [
   ],
   imports: [
     ...MODULES
+  ],
+  exports: [
   ],
   bootstrap: [AppComponent]
 })

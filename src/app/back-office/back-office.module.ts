@@ -36,9 +36,9 @@ const routes: Routes = [
 
 const MODULES = [
   CommonModule,
-  RouterModule.forChild(routes),
   ReactiveFormsModule,
-  FormsModule
+  FormsModule,
+  RouterModule.forChild(routes)
 ];
 
 const COMPONETS = [

@@ -19,6 +19,11 @@ export class PetsComponent implements OnInit, OnDestroy {
   petTypes$: Observable<Array<IPetType>>;
   totalItems$: Observable<number>;
 
+  page;
+
+  currentPage = 4;
+  smallnumPages = 0;
+
   activeComponent$ = new Subject<void>();
 
   constructor(

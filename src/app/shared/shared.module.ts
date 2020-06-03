@@ -41,7 +41,8 @@ const SERVICES = [
   imports: [
     ...MODULES
   ],
-  providers:
-  [...SERVICES]
+  providers:[
+    ...SERVICES
+  ]
 })
 export class SharedModule { }
