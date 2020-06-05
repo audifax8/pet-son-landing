@@ -1,72 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject, throwError, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import {
   IPetType,
   IBackResponse
 } from '../shared/interfaces';
+import { switchMap, map } from 'rxjs/operators';
 
 @Injectable()
 export class PetTypeService {
 
-  private activeService$: Subject<void>;
+  private pageBS: BehaviorSubject<number> = new BehaviorSubject(1);
+  page$ = this.pageBS.asObservable();
 
-  private page: number;
-  private limit: number;
+  private limitBS: BehaviorSubject<number> = new BehaviorSubject(50);
+  limit$ = this.limitBS.asObservable();
 
-  private petTypesBehaviourSubject: BehaviorSubject<Array<IPetType>> = new BehaviorSubject([]);
-  petTypes$ = this.petTypesBehaviourSubject.asObservable();
+  backResponse$: Observable<IBackResponse<Array<IPetType>>> = combineLatest([
+    this.page$,
+    this.limit$
+  ]).pipe(
+    switchMap(([page, limit]) =>
+      this.http.get<IBackResponse<Array<IPetType>>>(`${environment.api_url}pet-type/?page=${page}&limit=${limit}`)
+    )
+  );
 
+  petTypes$ = combineLatest([
+    this.backResponse$
+  ]).pipe(
+    map(([backResponse])=> backResponse.data)
+  );
 
   constructor(
     private http: HttpClient
   ) { }
-
-  public loadInitialState() {
-    this.page = 1;
-    this.limit = 40;
-    this.activeService$ = new Subject<void>()
-  }
-
-  public load(queryParams: any) {
-    const url = this.getQueryParams(queryParams);
-    this.http.get<IBackResponse<Array<IPetType>>>(url)
-    .pipe(takeUntil(this.activeService$))
-    .subscribe(
-      backResponse =>
-        this.petTypesBehaviourSubject.next(backResponse.data)
-    );
-  }
-
-  public unsubcribe() {
-    this.activeService$.next();
-    this.activeService$.complete();
-  }
-
-  private getQueryParams(queryParams: any): string {
-    const aditionalParams = Object.keys(queryParams).reduce(
-      (acc, curr) => `&${curr}=${queryParams[curr]}`, ''
-    );
-    return `${environment.api_url}pet-type/?page=${this.page}&limit=${this.limit}`;
-  }
-
-
-  private handleError(err: any) {
-    // in a real world app, we may send the server to some remote logging infrastructure
-    // instead of just logging it to the console
-    let errorMessage: string;
-    if (err.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      errorMessage = `An error occurred: ${err.error.message}`;
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      errorMessage = `Backend returned code ${err.status}: ${err.body.error}`;
-    }
-    console.error(err);
-    return throwError(errorMessage);
-  }
 
 }
