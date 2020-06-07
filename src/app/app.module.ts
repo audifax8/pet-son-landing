@@ -16,12 +16,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 
 import { HomeComponent } from './dashboard/home/home.component';
+import { HomeService } from './dashboard/home/home.service';
 import { NavComponent } from './dashboard/nav/nav.component';
 import { FooterComponent } from './dashboard/footer/footer.component';
 
@@ -48,7 +51,9 @@ const MODULES = [
   /* NGX Bootstrapt */
   AccordionModule.forRoot(),
   BsDropdownModule.forRoot(),
-  PaginationModule.forRoot()
+  PaginationModule.forRoot(),
+  CarouselModule.forRoot(),
+  CollapseModule.forRoot()
 ];
 
 const COMPONENTS = [
@@ -56,6 +61,10 @@ const COMPONENTS = [
   HomeComponent,
   NavComponent,
   FooterComponent
+];
+
+const SERVICES = [
+  HomeService
 ];
 
 @NgModule({
@@ -66,6 +75,9 @@ const COMPONENTS = [
     ...MODULES
   ],
   exports: [
+  ],
+  providers: [
+    ...SERVICES
   ],
   bootstrap: [AppComponent]
 })

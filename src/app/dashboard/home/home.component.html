@@ -1,29 +1,69 @@
-<br>
-<div class="row no-gutters bg-light position-relative">
+<!-- this tag calls api _health end-point -->
+<div hidden>{{healthResponse$ | async | json }}</div>
+
+<div>
+  <div style="padding: 20px">
+    <div class="jumbotron">
+      <div>
+        <img src="assets/logos/Azul.png" style="display: block; width: 100%;">
+      </div>
+      <hr class="my-4">
+      <h5 class="display-4 text-center">!Bienvenido a la fundación PetSon!</h5>
+      <p class="text-center lead">
+        Esta fundación pretende ayudarte a encontrar tu próxima mascota, o como nosotros lo llamamos, tu futuro hijo.
+      </p>
+    </div>
+  </div>
+  <div class="row no-gutters bg-light position-relative">
     <div class="col-md-3 mb-md-0 p-md-4">
-        <h2 class="text-center">Misión</h2>
+      <h2 class="text-center">Misión</h2>
     </div>
     <div class="col-md-9 position-static p-4 pl-md-0">
-        <p class="text-center">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+      <p class="text-center">
+        La fundación PetSon tiene como objetivo principal velar, vigilar y proteger todas las
+        mascotas de la ciudad de Medellín y sus alrededores con mira a nivel nacional y latino america,
+        realizando diversas actividades en pro de las mascotas.
+      </p>
     </div>
-</div>
-<br>
-<div class="row no-gutters bg-light position-relative">
+  </div>
+  <br>
+  <div class="row no-gutters bg-light position-relative">
     <div class="col-md-3 mb-md-0 p-md-4">
-        <h2 class="text-center">Visión</h2>
+      <h2 class="text-center">Visión</h2>
     </div>
     <div class="col-md-9 position-static p-4 pl-md-0">
-        <p class="text-center">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+      <p class="text-center">
+        Para el 2023, PetSon funcionará a nivel latino americano abriendo sedes en los países más afectados por esta problemática
+      </p>
     </div>
+  </div>
+  <br>
+  <hr>
+  <div style="padding: 20px">
+    <div class="jumbotron">
+      <h3 class="text-center">¿Quieres ser parte de PetSon?</h3>
+        <p class="text-center lead">
+          puedes ser parte de la fundación apoyándonos comprando nuestros productos o siendo uno de nuestros
+          <a href="http://localhost:4200/#/sponsors">patrocinadores.</a>
+        </p>
+        <hr class="my-4">
+        <carousel [isAnimated]="true">
+          <slide>
+            <img src="assets/products/p1.jpeg" alt="first slide" style="display: block; width: 100%;">
+          </slide>
+          <slide>
+            <img src="assets/products/p2.jpeg" alt="third slide" style="display: block; width: 100%;">
+          </slide>
+          <slide>
+            <img src="assets/products/p3.jpeg" alt="first slide" style="display: block; width: 100%;">
+          </slide>
+          <slide>
+            <img src="assets/products/p4.jpeg" alt="third slide" style="display: block; width: 100%;">
+          </slide>
+          <slide>
+            <img src="assets/products/p5.jpeg" alt="third slide" style="display: block; width: 100%;">
+          </slide>
+        </carousel>
+      </div>
+  </div>
 </div>
-<br>
-<div class="row no-gutters bg-light position-relative">
-    <div class="col-md-6 mb-md-0 p-md-4">
-    </div>
-    <div class="col-md-6 position-static p-4 pl-md-0">
-        <h5 class="mt-0">Columns with stretched link</h5>
-        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-    </div>
-</div>
-<br>
-<app-carousel></app-carousel>

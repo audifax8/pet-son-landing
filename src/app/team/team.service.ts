@@ -1,67 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject, throwError, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {
+  throwError,
+  Observable,
+  combineLatest
+} from 'rxjs';
 import {
   ITeamMember,
   IBackResponse
 } from '../shared/interfaces';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class TeamService {
 
-  private activeService$: Subject<void>;
+  backResponse$: Observable<IBackResponse<Array<ITeamMember>>> =
+    this.http.get<IBackResponse<Array<ITeamMember>>>(`${environment.api_url}team-member/?page=1&limit=100`);
 
-  private page: number;
-  private limit: number;
-
-  private teamMembersBehaviourSubject: BehaviorSubject<Array<ITeamMember>> = new BehaviorSubject([]);
-  teamMembers$ = this.teamMembersBehaviourSubject.asObservable();
-
-  private totalItemsBehaviourSubject: BehaviorSubject<number> = new BehaviorSubject(null);
-  totalItemsObservable$ = this.totalItemsBehaviourSubject.asObservable();
+  teamMembers$ = combineLatest([
+    this.backResponse$
+  ]).pipe(
+    map(([backResponse]) => backResponse.data)
+  );
 
   constructor(
     private http: HttpClient
   ) { }
-
-  public loadInitialState() {
-    this.page = 1;
-    this.limit = 50;
-    this.activeService$ = new Subject<void>()
-  }
-  public nextPage() {
-    this.page++;
-  }
-
-  public setRecordsPerPage(limit: number) {
-    this.limit = limit;
-  }
-
-  public load(queryParams: any) {
-    const url = this.getQueryParams(queryParams);
-    this.http.get<IBackResponse<Array<ITeamMember>>>(url)
-    .pipe(takeUntil(this.activeService$))
-    .subscribe(
-      backResponse => {
-        this.teamMembersBehaviourSubject.next(backResponse.data);
-        this.totalItemsBehaviourSubject.next(backResponse.totalItems);
-      }
-    );
-  }
-
-  public unsubcribe() {
-    this.activeService$.next();
-    this.activeService$.complete();
-  }
-
-  private getQueryParams(queryParams: any): string {
-    const aditionalParams = Object.keys(queryParams).reduce(
-      (acc, curr) => `&${curr}=${queryParams[curr]}`, ''
-    );
-    return `${environment.api_url}team-member/?page=${this.page}&limit=${this.limit}`;
-  }
 
 
   private handleError(err: any) {

@@ -10,14 +10,16 @@ import { UserService } from '../../shared/services';
 export class NavComponent implements OnInit {
 
   public links = [
-    { title: 'Equipo', fragment: 'team' },
+    { title: 'Patrocinadores', fragment: 'sponsors' },
     { title: 'Contanto', fragment: 'contact' },
-    { title: 'Colaboradores', fragment: 'sponsors' },
-    { title: 'Últimas adopciones', fragment: 'pets', param: 'adopted' },
-    { title: 'Por Adoptar', fragment: 'pets', param: 'pending' }
+    // { title: 'Últimas adopciones', fragment: 'pets', param: 'adopted' },
+    // { title: 'Por Adoptar', fragment: 'pets', param: 'pending' },
+    { title: 'Equipo PetSon', fragment: 'team' }
   ];
 
   public activeId = '';
+
+  public isCollapsed = true;
 
   constructor(
     public route: ActivatedRoute,
@@ -29,6 +31,10 @@ export class NavComponent implements OnInit {
 
   public logout() {
     this.userS.logout();
+  }
+
+  public openMenu() {
+    this.isCollapsed = !this.isCollapsed;
   }
 
 }
