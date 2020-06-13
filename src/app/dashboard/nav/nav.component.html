@@ -11,7 +11,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" routerLink="home">PetSon</a>
+        <a class="navbar-brand" routerLink="home">Inicio</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li *ngFor="let link of links">
                 <a class="nav-link" [routerLink]="link.fragment" [queryParams]="{ param: link.param} ">{{link.title}}</a>
@@ -25,7 +25,7 @@
 <div [collapse]="isCollapsed">
     <ul class="list-group navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="list-group-item">
-            <a class="navbar-brand" routerLink="home">PetSon</a>
+            <a class="navbar-brand" routerLink="home">Inicio</a>
         </li>
     </ul>
     <ul class="list-group navbar-nav mr-auto mt-2 mt-lg-0">

@@ -11,7 +11,7 @@ export class NavComponent implements OnInit {
 
   public links = [
     { title: 'Patrocinadores', fragment: 'sponsors' },
-    { title: 'Contanto', fragment: 'contact' },
+    { title: 'Contácto', fragment: 'contact' },
     // { title: 'Últimas adopciones', fragment: 'pets', param: 'adopted' },
     // { title: 'Por Adoptar', fragment: 'pets', param: 'pending' },
     { title: 'Equipo PetSon', fragment: 'team' }
