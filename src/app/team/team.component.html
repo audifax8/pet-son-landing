@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="card-deck">
+    <div style="padding: 16px" class="card-deck">
         <div *ngFor="let teamMember of teamMembers$ | async" class="card mb-4">
             <img class="card-img-top img-fluid" [src]="teamMember.avatar" alt="Card image cap">
             <div class="card-body">

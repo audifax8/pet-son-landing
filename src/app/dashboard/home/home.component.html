@@ -1,11 +1,12 @@
 <!-- this tag calls api _health end-point -->
 <div hidden>{{healthResponse$ | async | json }}</div>
+<div hidden>{{healthResponseDummiData$ | async | json }}</div>
 
 <div>
   <div style="padding: 20px">
     <div class="jumbotron">
-      <div>
-        <img src="assets/logos/Azul.png" style="display: block; width: 100%;">
+      <div class="text-center">
+        <img src="assets/logos/Azul.png" width="300">
       </div>
       <hr class="my-4">
       <h5 class="display-4 text-center">!Bienvenido a la fundación PetSon!</h5>
@@ -39,6 +40,32 @@
   </div>
   <br>
   <hr>
+  <div style="padding: 20px">
+    <div class="jumbotron">
+      <h3 class="text-center">Comentarios de nuestros adoptantes</h3>
+        <p class="text-center lead">
+        </p>
+        <hr class="my-4">
+        <carousel>
+          <slide>
+            <div class="text-center py-5 text-black" style="background-color: #e9ecef">
+              <h2>Armando Estaban Quito</h2>
+              <div class="lead">
+                <p>Me encanta la labor que hacen por las mascotas</p>
+              </div>
+            </div>
+          </slide>
+          <slide>
+            <div class="text-center py-5 text-black" style="background-color: #e9ecef">
+              <h2>Rita Freises</h2>
+              <div class="lead">
+                <p>!Enconté mi mascota gracias a su labor!.</p>
+              </div>
+            </div>
+          </slide>
+        </carousel>
+      </div>
+  </div>
   <div style="padding: 20px">
     <div class="jumbotron">
       <h3 class="text-center">Jornadas de adopción</h3>
