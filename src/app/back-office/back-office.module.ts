@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { BackOficeComponent } from './back-ofice/back-ofice.component';
+import { BackOfficeComponent } from './back-office/back-office.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './services/auth/auth.guard';
 import { NewPetComponent } from './components/new-pet/new-pet.component';
@@ -16,10 +16,8 @@ import { ManageTeamService } from './components/manage-team/manage-team.service'
 import { ManagePetsComponent } from './components/manage-pets/manage-pets.component';
 import { NewTeamMemberComponent } from './components/new-team-member/new-team-member.component';
 
-
-
 const routes: Routes = [
-  { path: '', component: BackOficeComponent, canActivate: [AuthGuard],
+  { path: '', component: BackOfficeComponent, canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'new-team-member', pathMatch: 'full' },
       { path: 'new-pet', component: NewPetComponent, canActivate: [AuthGuard] },
@@ -42,7 +40,7 @@ const MODULES = [
 ];
 
 const COMPONETS = [
-  BackOficeComponent,
+  BackOfficeComponent,
   LoginComponent,
   NewPetComponent,
   PetsComponent,

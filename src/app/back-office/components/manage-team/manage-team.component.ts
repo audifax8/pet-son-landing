@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ManageTeamService } from './manage-team.service';
 import {
-  ExternalLibsService,
-  DataBaseService
+  ExternalLibsService
 } from '../../../shared/services';
 
 
@@ -25,14 +24,12 @@ export class ManageTeamComponent implements OnInit {
   constructor(
     public router: Router,
     private mtS: ManageTeamService,
-    private externalLibsS: ExternalLibsService,
-    private dbS: DataBaseService
+    private externalLibsS: ExternalLibsService
   ) {
     this.isDevMode = this.externalLibsS.isDevMode;
   }
 
   ngOnInit(): void {
-    this.teamMembers$ = this.mtS.test$;
   }
 
   public edit(teamMemberId): void {
@@ -40,10 +37,6 @@ export class ManageTeamComponent implements OnInit {
   }
 
   public delete(teamMemberId): void {
-    this.dbS.deleteCollection(
-      'team-member',
-      teamMemberId
-    );
   }
 
 }

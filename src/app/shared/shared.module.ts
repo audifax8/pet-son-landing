@@ -7,9 +7,7 @@ import {
   FormService,
   CommandService,
   UserService,
-  ExternalLibsService,
-  FileStorageService,
-  DataBaseService
+  ExternalLibsService
 } from './services';
 
 const MODULES = [
@@ -26,9 +24,7 @@ const SERVICES = [
   FormService,
   CommandService,
   UserService,
-  ExternalLibsService,
-  FileStorageService,
-  DataBaseService
+  ExternalLibsService
 ];
 
 @NgModule({

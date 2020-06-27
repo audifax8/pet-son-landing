@@ -10,9 +10,7 @@ import {
 import {
   CommandService,
   FormService,
-  ExternalLibsService,
-  FileStorageService,
-  DataBaseService
+  ExternalLibsService
 } from '../../../shared/services';
 import {
   CommandValidationRule,
@@ -51,8 +49,6 @@ export class NewTeamMemberComponent implements OnInit {
     private commandS: CommandService,
     public formS: FormService,
     private externalLibsS: ExternalLibsService,
-    private fileStorageS: FileStorageService,
-    private dbS: DataBaseService
   ) {
     this.isDevMode = this.externalLibsS.isDevMode;
     this.teamMember = new TeamMember();
@@ -62,7 +58,7 @@ export class NewTeamMemberComponent implements OnInit {
     this.teamMemberForm = this.teamMember.getFormInstance();
     const teamMemberId = this.rote.snapshot.paramMap.get('teamMemberId');
     if (teamMemberId) {
-      this.dbS.getCollectionById(TeamMember.COLLECTION_PATH, teamMemberId)
+      /*this.dbS.getCollectionById(TeamMember.COLLECTION_PATH, teamMemberId)
         .subscribe(collection => {
           if (!collection.exists) return;
           this.loadFormByState(
@@ -71,7 +67,7 @@ export class NewTeamMemberComponent implements OnInit {
             teamMemberId,
             collection.data()
           );
-        });
+        });*/
     } else {
       this.loadFormByState(
         FormState.DEFAULT,
@@ -142,7 +138,7 @@ export class NewTeamMemberComponent implements OnInit {
           teamMember.occupation)
         );
         // this.avatarFullPath = teamMember.avatar;
-        this.fileStorageS.getFile(
+        /*this.fileStorageS.getFile(
           TeamMember.FILE_STORE_PATH,
           teamMember.id
         ).then(
@@ -150,7 +146,7 @@ export class NewTeamMemberComponent implements OnInit {
             this.avatarFullPath = url;
             // console.log(this.avatarFullPath);
           }
-        );
+        );*/
         break;
     case FormState.MARK_AS_DIRTY_AND_TOUCHED:
         this.formS.markAsTouchedAndMarkAsDirty(
@@ -205,7 +201,7 @@ export class NewTeamMemberComponent implements OnInit {
   }
 
   private save() {
-    this.fileStorageS.saveFile(
+    /*this.fileStorageS.saveFile(
       TeamMember.FILE_STORE_PATH,
       this.teamMember.getId(),
       this.avatar
@@ -225,7 +221,7 @@ export class NewTeamMemberComponent implements OnInit {
           err => console.log(err)
         );
       }
-    );
+    );*/
   }
 
   /*private delte() {

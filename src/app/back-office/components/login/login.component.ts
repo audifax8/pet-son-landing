@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private commandS: CommandService,
     public formS: FormService,
     private router: Router,
-    private userS: UserService,
+    public userS: UserService,
     private externalLibsS: ExternalLibsService
   ) {
     this.isDevMode = this.externalLibsS.isDevMode;
@@ -108,11 +108,30 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.loginForm
     );
 
+    if (!email || !pass) {
+      this.formS.markAsTouchedAndMarkAsDirty(this.loginForm);
+      return;
+    }
+
     this.userS.login(
       email,
       pass
     );
 
+  }
+
+  public async socialLogin(type: string) {
+    switch(type) {
+      case 'GOOGLE':
+        await this.userS.GoogleAuth();
+        this.router.navigate(['back-office/pets']);
+      default:
+        break;
+    }
+  }
+
+  public clearForm() {
+    this.formS.reset(this.loginForm);
   }
 
   public logout() {

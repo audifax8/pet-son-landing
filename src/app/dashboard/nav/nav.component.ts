@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { UserService } from '../../shared/services';
 
 @Component({
@@ -8,6 +8,8 @@ import { UserService } from '../../shared/services';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
+
+  isBackOfficeRoute;
 
   public links = [
     { title: 'Patrocinadores', fragment: 'sponsors' },
@@ -22,11 +24,17 @@ export class NavComponent implements OnInit {
   public isCollapsed = true;
 
   constructor(
-    public route: ActivatedRoute,
+    public activatedRoute: ActivatedRoute,
+    public router: Router,
     public userS: UserService
   ) { }
 
   ngOnInit(): void {
+    this.router.events.subscribe((routerChange) => {
+      if (routerChange instanceof NavigationEnd) {
+        this.isBackOfficeRoute = routerChange.url.includes('back-office');
+      }
+    });
   }
 
   public logout() {
@@ -35,6 +43,10 @@ export class NavComponent implements OnInit {
 
   public openMenu() {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  public goToBackOffice() {
+    this.router.navigate(['back-office']);
   }
 
 }

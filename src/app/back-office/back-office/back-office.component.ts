@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-back-ofice',
-  templateUrl: './back-ofice.component.html',
-  styleUrls: ['./back-ofice.component.scss']
+  selector: 'app-back-office',
+  templateUrl: './back-office.component.html',
+  styleUrls: ['./back-office.component.scss']
 })
-export class BackOficeComponent implements OnInit {
+export class BackOfficeComponent implements OnInit {
 
   public links = [
     { title: 'Nueva mascota', fragment: 'new-pet' },
