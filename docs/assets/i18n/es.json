@@ -1,0 +1,16 @@
+{
+  "LANGUAGES": {
+    "EN": "Inglés",
+    "ES": "Español"
+  },
+  "NAV": {
+    "HOME": "Inicio",
+    "SPONSORS": "Patrocinadores",
+    "CONTACT": "Contácto",
+    "TEAM": "Equipo PetSon"
+  },
+  "HOME": {
+    "TITLE": "!Bienvenido a la fundación PetSon!",
+    "SUB_TITLE": "Esta fundación pretende ayudarte a encontrar tu próxima mascota, o como nosotros lo llamamos, tu futuro hijo."
+  }
+}

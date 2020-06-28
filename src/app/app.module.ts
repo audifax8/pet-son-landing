@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-/** Firebase */
+/* Firebase */
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -26,6 +26,15 @@ import { HomeComponent } from './dashboard/home/home.component';
 import { HomeService } from './dashboard/home/home.service';
 import { NavComponent } from './dashboard/nav/nav.component';
 import { FooterComponent } from './dashboard/footer/footer.component';
+import { environment } from '../environments/environment';
+
+/* NGX Translate */
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
+}
 
 /*const config = {
   apiKey: "AIzaSyCvf6iAhHCfa9QEGRcmi3323XydTsaCpz8",
@@ -63,7 +72,15 @@ const MODULES = [
   BsDropdownModule.forRoot(),
   CarouselModule.forRoot(),
   CollapseModule.forRoot(),
-  PaginationModule.forRoot()
+  PaginationModule.forRoot(),
+  /* NGX Translate */
+  TranslateModule.forRoot({
+    loader: {
+      provide: TranslateLoader,
+      useFactory: HttpLoaderFactory,
+      deps: [HttpClient]
+    }
+  })
 ];
 
 const COMPONENTS = [

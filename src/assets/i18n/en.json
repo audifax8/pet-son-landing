@@ -1,0 +1,16 @@
+{
+  "LANGUAGES": {
+    "EN": "English",
+    "ES": "Spanish"
+  },
+  "NAV": {
+    "HOME": "Home",
+    "SPONSORS": "Sponsors",
+    "CONTACT": "Contact",
+    "TEAM": "PetSon team"
+  },
+  "HOME": {
+    "TITLE": "!Welcome to PetSon foundation!",
+    "SUB_TITLE": "This foundation wants helping you to find your next pet or like we call it your future son!"
+  }
+}

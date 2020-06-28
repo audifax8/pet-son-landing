@@ -40,16 +40,16 @@
       </svg>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="nav-link text-white h4" routerLink="home">Inicio</a>
+    <a class="nav-link text-white h4" routerLink="home">{{'NAV.HOME' | translate}}</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li *ngFor="let link of links">
-        <a class="nav-link text-white h4" [routerLink]="link.fragment" [queryParams]="{ param: link.param} ">{{link.title}}</a>
+        <a class="nav-link text-white h4" [routerLink]="link.fragment" [queryParams]="{ param: link.param} ">{{link.title | translate}}</a>
       </li>
     </ul>
   </div>
-  <select class="selectpicker" data-width="fit">
-      <option data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
-    <option  data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Español</option>
+  <select class="selectpicker" data-width="fit" (change)="changeLang($event.target.value)">
+    <option value="es" selected>{{'LANGUAGES.ES' | translate}}</option>
+    <option value="en">{{'LANGUAGES.EN' | translate}}</option>
   </select>
   <button *ngIf="(userS.user$ | async) && !isBackOfficeRoute" class="btn btn-warning" (click)="goToBackOffice()" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     BackOffice
@@ -61,12 +61,12 @@
 <div [collapse]="isCollapsed">
   <ul class="list-group navbar-nav mr-auto mt-2 mt-lg-0">
     <li class="list-group-item">
-      <a class="navbar-brand" routerLink="home">Inicio</a>
+      <a class="navbar-brand" routerLink="home">{{'NAV.HOME' | translate}}</a>
     </li>
   </ul>
   <ul class="list-group navbar-nav mr-auto mt-2 mt-lg-0">
     <li class="list-group-item" *ngFor="let link of links">
-      <a class="nav-link" [routerLink]="link.fragment" [queryParams]="{ param: link.param} ">{{link.title}}</a>
+      <a class="nav-link" [routerLink]="link.fragment" [queryParams]="{ param: link.param} ">{{link.title | translate}}</a>
     </li>
   </ul>
 </div>
