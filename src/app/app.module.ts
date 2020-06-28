@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -15,9 +14,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { SharedModule } from './shared/shared.module';
 
@@ -62,9 +61,9 @@ const MODULES = [
   /* NGX Bootstrapt */
   AccordionModule.forRoot(),
   BsDropdownModule.forRoot(),
-  PaginationModule.forRoot(),
   CarouselModule.forRoot(),
-  CollapseModule.forRoot()
+  CollapseModule.forRoot(),
+  PaginationModule.forRoot()
 ];
 
 const COMPONENTS = [

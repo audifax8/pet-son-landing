@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.commandS.addCommand(new CommandInputValue(
         this.loginForm,
         this.loginConstants.USER_NAME,
-        'amarele1991@gmail.com')
+        'amarele91@hotmail.com')
       );
       this.commandS.addCommand(new CommandInputValue(
         this.loginForm,

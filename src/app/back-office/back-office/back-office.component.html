@@ -1,10 +1,11 @@
-<div class="wrapper">
-     <nav id="sidebar">
-        <ul class="list-unstyled components">
-            <li *ngFor="let link of links" class="active">
-                <a [routerLink]="link.fragment" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{link.title}}</a>
-            </li>
-        </ul>
-    </nav>
+<div class="wrapper m-2">
+  <div class="list-group">
+    <span class="list-group-item active">Acciones</span>
+    <div *ngFor="let link of links" class="active">
+      <a [routerLink]="link.fragment" data-toggle="collapse" aria-expanded="false" class="list-group-item">{{link.title}}</a>
+    </div>
+  </div>
+  <div class="container">
     <router-outlet></router-outlet>
+  </div>
 </div>

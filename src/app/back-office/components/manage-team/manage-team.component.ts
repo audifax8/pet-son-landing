@@ -19,6 +19,8 @@ export class ManageTeamComponent implements OnInit {
 
   public teamMembers$: Observable<any>;
 
+  public totalItems$: Observable<number>;
+
   public isDevMode: boolean;
 
   constructor(
@@ -27,6 +29,8 @@ export class ManageTeamComponent implements OnInit {
     private externalLibsS: ExternalLibsService
   ) {
     this.isDevMode = this.externalLibsS.isDevMode;
+    this.teamMembers$ = this.mtS.teamMembers$;
+    this.totalItems$ = this.mtS.totalItems$;
   }
 
   ngOnInit(): void {

@@ -47,6 +47,10 @@
       </li>
     </ul>
   </div>
+  <select class="selectpicker" data-width="fit">
+      <option data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+    <option  data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Español</option>
+  </select>
   <button *ngIf="(userS.user$ | async) && !isBackOfficeRoute" class="btn btn-warning" (click)="goToBackOffice()" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     BackOffice
   </button>
