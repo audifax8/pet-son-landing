@@ -1,0 +1,10 @@
+<ng-template #customLoadingTemplate>
+  <div>
+  </div>
+</ng-template>
+
+<ngx-loading
+  [show]="showLoadingAnimation$ | async"
+  [config]="{animationType: ngxLoadingAnimationTypes.cubeGrid, backdropBorderRadius: '3px'}"
+  [template]="customLoadingTemplate">
+</ngx-loading>

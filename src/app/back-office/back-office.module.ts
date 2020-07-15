@@ -19,7 +19,7 @@ import { NewTeamMemberComponent } from './components/new-team-member/new-team-me
 const routes: Routes = [
   { path: '', component: BackOfficeComponent, canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'new-team-member', pathMatch: 'full' },
+      { path: '', redirectTo: 'manage-team', pathMatch: 'full' },
       { path: 'new-pet', component: NewPetComponent, canActivate: [AuthGuard] },
       { path: 'pets', component: PetsComponent, canActivate: [AuthGuard] },
       { path: 'pet-type', component: PetTypeComponent, canActivate: [AuthGuard] },

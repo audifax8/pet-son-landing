@@ -10,15 +10,12 @@ export class HomeComponent implements OnInit {
 
   healthResponse$;
 
-  healthResponseDummiData$;
-
   constructor(
     private homeS: HomeService
   ) { }
 
   ngOnInit(): void {
     this.healthResponse$ = this.homeS.backResponse$;
-    this.healthResponseDummiData$ = this.homeS.backResponseDummiData$;
   }
 
 }

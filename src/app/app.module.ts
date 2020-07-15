@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 /* Firebase */
 import { AngularFireModule } from '@angular/fire';
@@ -26,7 +26,7 @@ import { HomeComponent } from './dashboard/home/home.component';
 import { HomeService } from './dashboard/home/home.service';
 import { NavComponent } from './dashboard/nav/nav.component';
 import { FooterComponent } from './dashboard/footer/footer.component';
-import { environment } from '../environments/environment';
+import { AnimationLoaderComponent } from './dashboard/animation-loader/animation-loader.component';
 
 /* NGX Translate */
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -35,6 +35,11 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
 }
+
+import { NgxLoadingModule } from 'ngx-loading';
+import { ConfigService } from './shared/services';
+
+import { LoaderAnimationInterceptor } from './shared/interceptors/loader-animation.interceptor';
 
 /*const config = {
   apiKey: "AIzaSyCvf6iAhHCfa9QEGRcmi3323XydTsaCpz8",
@@ -80,18 +85,22 @@ const MODULES = [
       useFactory: HttpLoaderFactory,
       deps: [HttpClient]
     }
-  })
+  }),
+  NgxLoadingModule.forRoot({})
 ];
 
 const COMPONENTS = [
   AppComponent,
   HomeComponent,
   NavComponent,
-  FooterComponent
+  FooterComponent,
+  AnimationLoaderComponent
 ];
 
 const SERVICES = [
-  HomeService
+  HomeService,
+  ConfigService,
+  { provide: HTTP_INTERCEPTORS, useClass: LoaderAnimationInterceptor, multi: true }
 ];
 
 @NgModule({

@@ -13,9 +13,6 @@ export class HomeService {
   backResponse$: Observable<any> =
     this.http.get<IBackResponse<any>>(`${environment.api_url}_health`);
 
-  backResponseDummiData$: Observable<any> =
-    this.http.get<IBackResponse<any>>(`${environment.api_url}data`);
-
   constructor(
     private http: HttpClient
   ) { }
