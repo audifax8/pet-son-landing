@@ -12,11 +12,13 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 
+/* ngx-bootstrap */
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { SharedModule } from './shared/shared.module';
 
@@ -36,6 +38,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
 }
 
+import { ToastrModule } from 'ngx-toastr';
 import { NgxLoadingModule } from 'ngx-loading';
 import { ConfigService } from './shared/services';
 
@@ -78,6 +81,7 @@ const MODULES = [
   CarouselModule.forRoot(),
   CollapseModule.forRoot(),
   PaginationModule.forRoot(),
+  ModalModule.forRoot(),
   /* NGX Translate */
   TranslateModule.forRoot({
     loader: {
@@ -86,7 +90,13 @@ const MODULES = [
       deps: [HttpClient]
     }
   }),
-  NgxLoadingModule.forRoot({})
+  NgxLoadingModule.forRoot({}),
+  ToastrModule.forRoot(
+    {
+      progressBar: true,
+      closeButton: true
+    }
+  )
 ];
 
 const COMPONENTS = [

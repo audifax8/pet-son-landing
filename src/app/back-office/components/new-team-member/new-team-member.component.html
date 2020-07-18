@@ -1,81 +1,107 @@
 <div class="jumbotron t-20">
-    <h3 class="display-16">Crear miembro equipo</h3>
-    <form [formGroup]="teamMemberForm">
-         <div class="form-group">
-            <label for="exampleInputEmail1">Nombre</label>
-            <input
-                formControlName="{{formConstants.NAME}}"
-                class="form-control"
-                id="{{formConstants.NAME}}"
-                aria-describedby="nameHelp"
-                [ngClass]="{'is-invalid': formS.isTouchedOrDirtyAndInvalid(formConstants.NAME, teamMemberForm)}"/>
-                <div class="invalid-feedback">
-                    <span *ngIf="formS.isTouchedOrDirtyAndInvalid(formConstants.NAME, teamMemberForm)">
-                        Ingrese un nombre de usuario.
-                    </span>
-                </div>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Rol en la fundación</label>
-            <input
-                formControlName="{{formConstants.ROLE}}"
-                class="form-control"
-                id="{{formConstants.ROLE}}"
-                aria-describedby="roleHelp"
-                [ngClass]="{'is-invalid': formS.isTouchedOrDirtyAndInvalid(formConstants.ROLE, teamMemberForm)}"/>
-            <div class="invalid-feedback">
-                <span *ngIf="formS.isTouchedOrDirtyAndInvalid(formConstants.ROLE, teamMemberForm)">
-                    Ingrese el rol en la fundación.
-                </span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Descripción</label>
-            <input
-                formControlName="{{formConstants.DESCRIPTION}}"
-                class="form-control"
-                id="{{formConstants.DESCRIPTION}}"
-                aria-describedby="roleHelp"
-                [ngClass]="{'is-invalid': formS.isTouchedOrDirtyAndInvalid(formConstants.DESCRIPTION, teamMemberForm)}"/>
-            <div class="invalid-feedback">
-                <span *ngIf="formS.isTouchedOrDirtyAndInvalid(formConstants.DESCRIPTION, teamMemberForm)">
-                    Ingrese una descrición.
-                </span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Ocupación</label>
-            <input
-                formControlName="{{formConstants.OCCUPATION}}"
-                class="form-control"
-                id="{{formConstants.OCCUPATION}}"
-                aria-describedby="roleHelp"
-                [ngClass]="{'is-invalid': formS.isTouchedOrDirtyAndInvalid(formConstants.OCCUPATION, teamMemberForm)}"/>
-            <div class="invalid-feedback">
-                <span *ngIf="formS.isTouchedOrDirtyAndInvalid(formConstants.OCCUPATION, teamMemberForm)">
-                    Ingrese la ocupación.
-                </span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Cargar foto</label>
-            <input
-                (change)="loadAvatar($event)"
-                type="file"
-                class="form-control"
-                id="avatar"
-                [ngClass]="{'is-invalid': isPendingAvatar}"/>
-            <div class="invalid-feedback">
-                <span>
-                    Seleccione una foto.
-                </span>
-            </div>
-        </div>
-        <div *ngIf="isDevMode" class="form-group">
-            <img [src]="avatarFullPath"/>
-        </div>
-        <button type="submit" class="btn btn-primary" (click)="create()">Crear</button>
-        <button type="submit" class="btn btn-primary" (click)="clear()">Limpiar</button>
+  <h3 class="display-16">{{actionType}} miembro equipo</h3>
+  <form [formGroup]="teamMemberForm">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Nombre</label>
+      <input
+        formControlName="{{formConstants.NAME}}"
+        class="form-control"
+        id="{{formConstants.NAME}}"
+        aria-describedby="nameHelp"
+        [ngClass]="{'is-invalid': formS.isTouchedOrDirtyAndInvalid(formConstants.NAME, teamMemberForm)}"
+      />
+      <div class="invalid-feedback">
+        <span *ngIf="formS.isTouchedOrDirtyAndInvalid(formConstants.NAME, teamMemberForm)">
+          Ingrese un nombre de usuario.
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Genero</label>
+      <select
+        class="form-control form-control-sm"
+        formControlName="{{formConstants.GENDER}}"
+        id="{{formConstants.GENDER}}"
+        [ngClass]="{'is-invalid': formS.isTouchedOrDirtyAndInvalid(formConstants.GENDER, teamMemberForm)}"
+        >
+        <option value="null">Seleccione un valor</option>
+        <option value="male">Masculino</option>
+        <option value="female">Femenino</option>
+      </select>
+      <div class="invalid-feedback">
+        <span *ngIf="formS.isTouchedOrDirtyAndInvalid(formConstants.GENDER, teamMemberForm)">
+          Seleccione un genero.
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Rol en la fundación</label>
+      <input
+        formControlName="{{formConstants.ROLE}}"
+        class="form-control"
+        id="{{formConstants.ROLE}}"
+        aria-describedby="roleHelp"
+        [ngClass]="{'is-invalid': formS.isTouchedOrDirtyAndInvalid(formConstants.ROLE, teamMemberForm)}"
+      />
+      <div class="invalid-feedback">
+        <span *ngIf="formS.isTouchedOrDirtyAndInvalid(formConstants.ROLE, teamMemberForm)">
+          Ingrese el rol en la fundación.
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Descripción</label>
+        <input
+          formControlName="{{formConstants.DESCRIPTION}}"
+          class="form-control"
+          id="{{formConstants.DESCRIPTION}}"
+          aria-describedby="roleHelp"
+          [ngClass]="{'is-invalid': formS.isTouchedOrDirtyAndInvalid(formConstants.DESCRIPTION, teamMemberForm)}"
+        />
+      <div class="invalid-feedback">
+        <span *ngIf="formS.isTouchedOrDirtyAndInvalid(formConstants.DESCRIPTION, teamMemberForm)">
+          Ingrese una descrición.
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Ocupación</label>
+      <input
+        formControlName="{{formConstants.OCCUPATION}}"
+        class="form-control"
+        id="{{formConstants.OCCUPATION}}"
+        aria-describedby="roleHelp"
+        [ngClass]="{'is-invalid': formS.isTouchedOrDirtyAndInvalid(formConstants.OCCUPATION, teamMemberForm)}"
+      />
+      <div class="invalid-feedback">
+        <span *ngIf="formS.isTouchedOrDirtyAndInvalid(formConstants.OCCUPATION, teamMemberForm)">
+          Ingrese la ocupación.
+        </span>
+      </div>
+    </div>
+    <!--
+    <div class="form-group">
+      <label for="exampleInputPassword1">Cargar foto</label>
+      <input
+        (change)="loadAvatar($event)"
+        type="file"
+        class="form-control"
+        id="avatar"
+        [ngClass]="{'is-invalid': isPendingAvatar}"
+      />
+      <div class="invalid-feedback">
+        <span>
+          Seleccione una foto.
+        </span>
+      </div>
+    </div>
+    <div *ngIf="isDevMode" class="form-group">
+      <img [src]="avatarFullPath"/>
+    </div>
+    -->
+    <button *ngIf="actionType === 'Crear'" type="submit" class="btn btn-primary" (click)="create()">{{actionType}}</button>
+    <button *ngIf="actionType === 'Editar'" type="submit" class="btn btn-primary" (click)="edit()">{{actionType}}</button>
+    <button type="submit" class="btn btn-warning" (click)="clear()">Limpiar</button>
     </form>
     <hr class="my-4">
     <pre *ngIf="isDevMode">{{ teamMemberForm.value | json}}</pre>

@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+  NavigationEnd
+} from '@angular/router';
 import { UserService } from '../../shared/services';
 import { TranslateService } from '@ngx-translate/core';
+import { LangName } from '../../shared/enums';
 
 @Component({
   selector: 'app-nav',
@@ -11,6 +16,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class NavComponent implements OnInit {
 
   isBackOfficeRoute;
+
+  LangName = LangName;
 
   public links = [
     { title: 'NAV.SPONSORS', fragment: 'sponsors' },

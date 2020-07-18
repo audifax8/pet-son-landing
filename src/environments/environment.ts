@@ -5,7 +5,9 @@ import { isDevMode } from '@angular/core';
 export const environment = {
   production: false,
   api_url: 'http://localhost:3000/api/',
-  isDevMode: isDevMode()
+  isDevMode: isDevMode(),
+  crytpo_hash: 'crytpo_hash_dev',
+  session: 'PetSonUser'
 };
 
 /*

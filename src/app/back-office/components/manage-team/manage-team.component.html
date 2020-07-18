@@ -1,3 +1,7 @@
+<button type="button" class="btn btn-primary" (click)="redirect()">
+  Crear
+</button>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -16,12 +20,12 @@
         <td>{{ teamMember.occupation }}</td>
         <td>{{ teamMember.role }}</td>
         <td>
-          <button type="button" class="btn btn-primary" (click)="edit(teamMember.firebaseId)">
+          <button type="button" class="btn btn-success" (click)="redirect(teamMember.id)">
             Editar
           </button>
         </td>
         <td>
-          <button type="button" class="btn btn-danger" (click)="delete(teamMember.firebaseId)">
+          <button type="button" class="btn btn-danger" (click)="delete(teamMember.id)">
             Eliminar
           </button>
         </td>
@@ -29,3 +33,4 @@
   </tbody>
 </table>
 <pre *ngIf="isDevMode"> {{ teamMembers$ | async | json }} </pre>
+<app-confirmation-modal #confirmationModal (confirmationResult)="onResult($event)"></app-confirmation-modal>

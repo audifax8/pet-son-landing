@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subject } from 'rxjs';
+import {
+  BehaviorSubject,
+  Subject
+} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { auth } from 'firebase/app';
 import { HttpClient } from '@angular/common/http';
+import * as  CryptoJS  from 'crypto-js';
 import { environment } from '../../../environments/environment';
+import { LoginType } from '../enums';
 
 @Injectable()
 export class UserService {
@@ -30,13 +35,13 @@ export class UserService {
   private async mapUserFromAccesType(accesType, data) {
     let user;
     switch(accesType) {
-      case 'USER_PASSWORD':
+      case LoginType.EMAIL_PASS:
         user =  {
           id: data.user.uid,
           email: data.user.email
         };
         break;
-      case 'GOOGLE':
+      case LoginType.GOOGLE:
         user = data.additionalUserInfo.profile;
         break;
       default:
@@ -51,7 +56,16 @@ export class UserService {
 
   public setUser(user) {
     this.userSubject.next(user);
-    localStorage.setItem('PetSonUser', JSON.stringify(user));
+    const encriptedSession = CryptoJS.AES.encrypt(JSON.stringify(user), environment.crytpo_hash).toString();
+    localStorage.setItem(environment.session, encriptedSession);
+  }
+
+  public getUserSession() {
+    const encriptedSession = localStorage.getItem(environment.session);
+    // Decrypt
+    const bytes  = CryptoJS.AES.decrypt(encriptedSession, environment.crytpo_hash);
+    const userSession = bytes.toString(CryptoJS.enc.Utf8);
+    return userSession;
   }
 
   GoogleAuth() {
@@ -63,7 +77,7 @@ export class UserService {
     try {
       this.errorMessageSubject.next(null);
       const response = await  this.afAuthService.auth.signInWithPopup(provider);
-      const user = await this.mapUserFromAccesType('GOOGLE', response);
+      const user = await this.mapUserFromAccesType(LoginType.GOOGLE, response);
       this.setUser(user);
     }catch (ex) {
       this.userSubject.next(null);
@@ -81,7 +95,7 @@ export class UserService {
         password
       );
       this.errorMessageSubject.next(null);
-      const user = await this.mapUserFromAccesType('USER_PASSWORD', response);
+      const user = await this.mapUserFromAccesType(LoginType.EMAIL_PASS, response);
       this.setUser(user);
     } catch (ex) {
       this.userSubject.next(null);
@@ -93,11 +107,15 @@ export class UserService {
     return this.http.post(`${environment.api_url}user/token`, {userId});
   }
 
+  public getUserToken(): string {
+    return this.userSubject.value.token;
+  }
+
   public logout() {
     this.afAuthService.auth.signOut()
       .then(
         () => {
-          localStorage.removeItem('PetSonUser');
+          localStorage.removeItem(environment.session);
           this.userSubject.next(null);
           this.errorMessageSubject.next(null);
           this.router.navigate(['back-office/login']);

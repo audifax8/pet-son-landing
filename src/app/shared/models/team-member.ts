@@ -7,11 +7,11 @@ export class TeamMember extends BaseModel {
   static COLLECTION_PATH = 'team-member/';
 
   static formConstants = {
-    ID: 'id',
     NAME: 'name',
     ROLE: 'role',
     DESCRIPTION: 'description',
-    OCCUPATION: 'occupation'
+    OCCUPATION: 'occupation',
+    GENDER: 'gender'
   };
 
   constructor() {
@@ -24,16 +24,16 @@ export class TeamMember extends BaseModel {
 
   public getFormInstance(): FormGroup {
     const teamMemberForm = new FormGroup({});
-    const idFormControl = new FormControl();
     const nameFormControl = new FormControl();
     const roleFormControl = new FormControl();
     const descriptionormControl = new FormControl();
     const occupationFormControl = new FormControl();
-    teamMemberForm.addControl(TeamMember.formConstants.ID, idFormControl);
+    const genderFormControl = new FormControl();
     teamMemberForm.addControl(TeamMember.formConstants.NAME, nameFormControl);
     teamMemberForm.addControl(TeamMember.formConstants.ROLE, roleFormControl);
     teamMemberForm.addControl(TeamMember.formConstants.DESCRIPTION, descriptionormControl);
     teamMemberForm.addControl(TeamMember.formConstants.OCCUPATION, occupationFormControl);
+    teamMemberForm.addControl(TeamMember.formConstants.GENDER, genderFormControl);
     return teamMemberForm;
   }
 
@@ -42,7 +42,6 @@ export class TeamMember extends BaseModel {
     avatar: string
   ) {
     return {
-      creationDate: this.creationDate,
       ...form.value,
       avatar
     };

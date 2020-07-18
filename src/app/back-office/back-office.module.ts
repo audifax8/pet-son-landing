@@ -15,6 +15,7 @@ import { ManageTeamService } from './components/manage-team/manage-team.service'
 
 import { ManagePetsComponent } from './components/manage-pets/manage-pets.component';
 import { NewTeamMemberComponent } from './components/new-team-member/new-team-member.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 const routes: Routes = [
   { path: '', component: BackOfficeComponent, canActivate: [AuthGuard],
@@ -47,7 +48,8 @@ const COMPONETS = [
   PetTypeComponent,
   NewTeamMemberComponent,
   ManageTeamComponent,
-  ManagePetsComponent
+  ManagePetsComponent,
+  ConfirmationModalComponent
 ];
 
 const SERVICES = [

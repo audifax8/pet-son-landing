@@ -48,8 +48,8 @@
     </ul>
   </div>
   <select class="selectpicker" data-width="fit" (change)="changeLang($event.target.value)">
-    <option value="es" selected>{{'LANGUAGES.ES' | translate}}</option>
-    <option value="en">{{'LANGUAGES.EN' | translate}}</option>
+    <option [value]="LangName.SPANISH" selected>{{'LANGUAGES.ES' | translate}}</option>
+    <option [value]="LangName.ENGLISH">{{'LANGUAGES.EN' | translate}}</option>
   </select>
   <button *ngIf="(userS.user$ | async) && !isBackOfficeRoute" class="btn btn-warning" (click)="goToBackOffice()" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     BackOffice

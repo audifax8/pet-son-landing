@@ -5,13 +5,14 @@ import { Observable, Subscription } from 'rxjs';
 import {
   CommandService,
   FormService,
-  UserService,
-  ExternalLibsService
+  UserService
 } from '../../../shared/services';
 import {
   CommandValidationRule,
   CommandInputValue
 } from '../../../util';
+import { LoginType } from '../../../shared/enums';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -40,10 +41,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     private commandS: CommandService,
     public formS: FormService,
     private router: Router,
-    public userS: UserService,
-    private externalLibsS: ExternalLibsService
+    public userS: UserService
   ) {
-    this.isDevMode = this.externalLibsS.isDevMode;
+    this.isDevMode = environment.isDevMode;
   }
 
   ngOnInit(): void {
@@ -122,9 +122,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public async socialLogin(type: string) {
     switch(type) {
-      case 'GOOGLE':
+      case LoginType.GOOGLE:
         await this.userS.GoogleAuth();
-        this.router.navigate(['back-office/pets']);
+        this.router.navigate(['back-office']);
       default:
         break;
     }

@@ -1,28 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 import {
   FormGroup,
   Validators
 } from '@angular/forms';
 import {
-  ActivatedRoute,
-  Router
+  ActivatedRoute
 } from '@angular/router';
 import {
   CommandService,
-  FormService,
-  ExternalLibsService
+  FormService
 } from '../../../shared/services';
 import {
   CommandValidationRule,
   CommandInputValue
 } from '../../../util';
-
 import {
   TeamMember
 } from '../../../shared/models'
 import {
   FormState
 } from '../../../shared/enums';
+import {
+  ManageTeamService
+} from '../manage-team/manage-team.service';
 
 @Component({
   selector: 'app-new-team-member',
@@ -41,38 +44,38 @@ export class NewTeamMemberComponent implements OnInit {
 
   private teamMember: TeamMember;
 
-  public isDevMode: boolean;
+  public isDevMode: boolean = false;
+
+  public actionType: string;
+
+  private teamMemberId: string;
 
   constructor(
-    private rote: ActivatedRoute,
-    private roter: Router,
-    private commandS: CommandService,
-    public formS: FormService,
-    private externalLibsS: ExternalLibsService,
+    private readonly rote: ActivatedRoute,
+    private readonly commandS: CommandService,
+    public readonly formS: FormService,
+    private readonly manageTS: ManageTeamService
   ) {
-    this.isDevMode = this.externalLibsS.isDevMode;
     this.teamMember = new TeamMember();
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.teamMemberForm = this.teamMember.getFormInstance();
     const teamMemberId = this.rote.snapshot.paramMap.get('teamMemberId');
     if (teamMemberId) {
-      /*this.dbS.getCollectionById(TeamMember.COLLECTION_PATH, teamMemberId)
-        .subscribe(collection => {
-          if (!collection.exists) return;
-          this.loadFormByState(
-            FormState.EDIT,
-            this.teamMemberForm,
-            teamMemberId,
-            collection.data()
-          );
-        });*/
+      this.teamMemberId = teamMemberId;
+      this.actionType = 'Editar';
+      const backResponse = await this.manageTS.getById(teamMemberId);
+      this.loadFormByState(
+        FormState.EDIT,
+        this.teamMemberForm,
+        backResponse.data
+      );
     } else {
+      this.actionType = 'Crear';
       this.loadFormByState(
         FormState.DEFAULT,
-        this.teamMemberForm,
-        this.teamMember.getId()
+        this.teamMemberForm
       );
     }
   }
@@ -80,18 +83,17 @@ export class NewTeamMemberComponent implements OnInit {
   private loadFormByState(
       state: FormState,
       form: FormGroup,
-      teamMemberId?: string,
       teamMember?: any
   ): void {
     switch(state) {
       case FormState.DEFAULT:
         this.commandS.addCommand(new CommandValidationRule(
           form,
-          this.formConstants.ID,
+          this.formConstants.NAME,
           [Validators.required]));
         this.commandS.addCommand(new CommandValidationRule(
           form,
-          this.formConstants.NAME,
+          this.formConstants.GENDER,
           [Validators.required]));
         this.commandS.addCommand(new CommandValidationRule(
           form,
@@ -105,22 +107,17 @@ export class NewTeamMemberComponent implements OnInit {
           form,
           this.formConstants.OCCUPATION,
           [Validators.required]));
-        this.commandS.addCommand(new CommandInputValue(
-          form,
-          this.formConstants.ID,
-          teamMemberId)
-        );
         break;
     case FormState.EDIT:
         this.commandS.addCommand(new CommandInputValue(
           form,
-          this.formConstants.ID,
-          teamMemberId)
+          this.formConstants.NAME,
+          teamMember.name)
         );
         this.commandS.addCommand(new CommandInputValue(
           form,
-          this.formConstants.NAME,
-          teamMember.name)
+          this.formConstants.GENDER,
+          teamMember.gender)
         );
         this.commandS.addCommand(new CommandInputValue(
           form,
@@ -137,6 +134,26 @@ export class NewTeamMemberComponent implements OnInit {
           this.formConstants.OCCUPATION,
           teamMember.occupation)
         );
+        this.commandS.addCommand(new CommandValidationRule(
+          form,
+          this.formConstants.NAME,
+          [Validators.required]));
+        this.commandS.addCommand(new CommandValidationRule(
+          form,
+          this.formConstants.GENDER,
+          [Validators.required]));
+        this.commandS.addCommand(new CommandValidationRule(
+          form,
+          this.formConstants.ROLE,
+          [Validators.required]));
+        this.commandS.addCommand(new CommandValidationRule(
+          form,
+          this.formConstants.DESCRIPTION,
+          [Validators.required]));
+        this.commandS.addCommand(new CommandValidationRule(
+          form,
+          this.formConstants.OCCUPATION,
+          [Validators.required]));
         // this.avatarFullPath = teamMember.avatar;
         /*this.fileStorageS.getFile(
           TeamMember.FILE_STORE_PATH,
@@ -167,19 +184,35 @@ export class NewTeamMemberComponent implements OnInit {
     this.commandS.executeCommands();
   }
 
-  public create(): void {
-    if (this.teamMemberForm.invalid || !this.avatar) {
+  public async create() {
+    if (this.teamMemberForm.invalid) {
       this.loadFormByState(
         FormState.MARK_AS_DIRTY_AND_TOUCHED,
         this.teamMemberForm
       );
       return;
     }
-    this.save();
+    const backResponse = await this.manageTS.post(this.teamMember.mapFormToTeamMember(this.teamMemberForm, undefined));
+    this.teamMemberId = backResponse.data.id;
+    this.actionType = 'Editar';
+  }
 
+  public async edit() {
+    if (this.teamMemberForm.invalid) {
+      this.loadFormByState(
+        FormState.MARK_AS_DIRTY_AND_TOUCHED,
+        this.teamMemberForm
+      );
+      return;
+    }
+    this.manageTS.put(
+      this.teamMemberId,
+      this.teamMember.mapFormToTeamMember(this.teamMemberForm, undefined)
+      );
   }
 
   public clear(): void {
+    this.actionType = 'Crear';
     this.isPendingAvatar = false;
     this.avatar = null;
     this.avatarFullPath = null;
@@ -191,7 +224,7 @@ export class NewTeamMemberComponent implements OnInit {
     this.loadFormByState(
       FormState.DEFAULT,
       this.teamMemberForm,
-      this.teamMember.getId()
+      undefined
     );
   }
 
