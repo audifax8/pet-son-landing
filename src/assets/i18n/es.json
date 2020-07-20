@@ -12,5 +12,33 @@
   "HOME": {
     "TITLE": "!Bienvenido a la fundación PetSon!",
     "SUB_TITLE": "Esta fundación pretende ayudarte a encontrar tu próxima mascota, o como nosotros lo llamamos, tu futuro hijo."
+  },
+  "CONTACT":{
+    "TITLE": "CONTÁCTO",
+    "SOCIALMEDIA": "Síguenos en nuestras redes sociales",
+    "NAME": {
+      "PLACEHOLDER": "Contácto",
+      "ERROR": "Ingrese un nombre"
+    },
+    "EMAIL": {
+      "PLACEHOLDER": "Email",
+      "ERROR": "Ingrese un correo valido"
+    },
+    "PHONE": {
+      "PLACEHOLDER": "Teléfono",
+      "ERROR": "Ingrese un numero telefonico valido"
+    },
+    "MESSAGE": {
+      "PLACEHOLDER": "Déjanos un mensaje",
+      "ERROR": "Ingrese un mensaje"
+    },
+    "POLICIES": {
+      "PLACEHOLDER": "Acepto los términos y condiciones",
+      "ERROR": "Acepte los términos y condiciones"
+    },
+    "CAPTCHA": {
+      "PLACEHOLDER": "",
+      "ERROR": "Por favor valide que no es un robot"
+    }
   }
 }
