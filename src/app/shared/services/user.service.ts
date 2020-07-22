@@ -62,9 +62,12 @@ export class UserService {
 
   public getUserSession() {
     const encriptedSession = localStorage.getItem(environment.session);
+    let userSession;
     // Decrypt
-    const bytes  = CryptoJS.AES.decrypt(encriptedSession, environment.crytpo_hash);
-    const userSession = bytes.toString(CryptoJS.enc.Utf8);
+    if (encriptedSession) {
+      const bytes  = CryptoJS.AES.decrypt(encriptedSession, environment.crytpo_hash);
+      userSession = bytes.toString(CryptoJS.enc.Utf8);
+    }
     return userSession;
   }
 

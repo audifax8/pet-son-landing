@@ -12,5 +12,37 @@
   "HOME": {
     "TITLE": "!Welcome to PetSon foundation!",
     "SUB_TITLE": "This foundation wants helping you to find your next pet or like we call it your future son!"
+  },
+  "CONTACT":{
+    "TITLE": "CONTACT",
+    "SOCIALMEDIA": "Follow us",
+    "NAME": {
+      "PLACEHOLDER": "Contact",
+      "ERROR": "Enter a name"
+    },
+    "EMAIL": {
+      "PLACEHOLDER": "Email",
+      "ERROR": "Enter a valid email"
+    },
+    "PHONE": {
+      "PLACEHOLDER": "Phone number",
+      "ERROR": "Enter a valid phone number"
+    },
+    "MESSAGE": {
+      "PLACEHOLDER": "Leave us a message",
+      "ERROR": "Enter a message"
+    },
+    "POLICIES": {
+      "PLACEHOLDER": "I acept termns and condictions",
+      "ERROR": "Acept termns and condictions"
+    },
+    "CAPTCHA": {
+      "PLACEHOLDER": "",
+      "ERROR": "Please verify your are not a robot"
+    }
+  },
+  "BUTTONS": {
+    "SEND": "Send",
+    "RESET": "Reset"
   }
 }

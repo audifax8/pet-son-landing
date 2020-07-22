@@ -1,20 +1,30 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormService } from '../shared/services';
 import { ContactService } from './contact.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { RecaptchaComponent } from 'ng-recaptcha';
+
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit {
-  contactForm: FormGroup;
-  captchaKey: string = '6LfnXbMZAAAAAC8H3gDop54mO976thXpOX4ql7o4';
+export class ContactComponent implements OnInit, OnDestroy {
+
+  @ViewChild('recaptchaComponent') recaptchaComponent: RecaptchaComponent;
+
+  public contactForm: FormGroup;
+  public captchaKey: string = environment.captcha_key;
+
+  private activeComponent$ = new Subject<void>();
 
   constructor(
-    private fb: FormBuilder, 
-    private fs: FormService, 
+    private fb: FormBuilder,
+    private fs: FormService,
     private contactS: ContactService
   ) { }
 
@@ -22,30 +32,20 @@ export class ContactComponent implements OnInit {
     this.createForm();
   }
 
-  get nameNoValid() {
-    return this.fs.isTouchedOrDirtyAndInvalid('name', this.contactForm);
+  ngOnDestroy() : void {
+    this.activeComponent$.next();
+    this.activeComponent$.complete();
   }
-  get emailNoValid() {
-    return this.fs.isTouchedOrDirtyAndInvalid('email', this.contactForm);
-  }
-  get phoneNumberNoValid() {
-    return this.fs.isTouchedOrDirtyAndInvalid('phoneNumber', this.contactForm);
-  }
-  get messageNoValid() {
-    return this.fs.isTouchedOrDirtyAndInvalid('message', this.contactForm);
-  }
-  get policiesNoValid() {
-    return this.fs.isTouchedOrDirtyAndInvalid('policies', this.contactForm);
-  }
-  get captchaNoValid() {
-    return this.fs.isTouchedOrDirtyAndInvalid('recaptchaReactive.captcha', this.contactForm);
+
+  public formInputNoValid(inputName: string) {
+    return this.fs.isTouchedOrDirtyAndInvalid(inputName, this.contactForm);
   }
 
   createForm () {
     this.contactForm = this.fb.group({
-      name: ['Jose', Validators.required],
-      email: ['cardonarendonjd@gmail.com', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'), Validators.required]],
-      phoneNumber: [3206656775, [Validators.pattern('^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'), Validators.required]],
+      name: ['', Validators.required],
+      email: ['', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'), Validators.required]],
+      phoneNumber: [, [Validators.pattern('^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'), Validators.required]],
       message: ['', Validators.required],
       recaptchaReactive: this.fb.group({
         captcha: [false, Validators.requiredTrue]
@@ -59,6 +59,7 @@ export class ContactComponent implements OnInit {
       return this.fs.markAsTouchedAndMarkAsDirty(this.contactForm);
     }
     this.contactS.submitForm(this.contactForm)
+      .pipe(takeUntil(this.activeComponent$))
       .subscribe(() => {
         this.fs.reset(this.contactForm);
       });
@@ -70,9 +71,16 @@ export class ContactComponent implements OnInit {
       return;
     }
     this.contactS.sendCaptchaToken(captchaToken)
+      .pipe(takeUntil(this.activeComponent$))
       .subscribe(
         (success:boolean) => {
         this.contactForm.get('recaptchaReactive.captcha').setValue(success);
       });
   }
+
+  reset(): void {
+    this.fs.reset(this.contactForm);
+    this.recaptchaComponent.reset();
+  }
+
 }
