@@ -7,7 +7,8 @@ export const environment = {
   api_url: 'http://localhost:3000/api/',
   isDevMode: isDevMode(),
   crytpo_hash: 'crytpo_hash_dev',
-  session: 'PetSonUser'
+  session: 'PetSonUser',
+  captcha_key: '6LfnXbMZAAAAAC8H3gDop54mO976thXpOX4ql7o4'
 };
 
 /*

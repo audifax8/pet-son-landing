@@ -40,5 +40,9 @@
       "PLACEHOLDER": "",
       "ERROR": "Please verify your are not a robot"
     }
+  },
+  "BUTTONS": {
+    "SEND": "Send",
+    "RESET": "Reset"
   }
 }

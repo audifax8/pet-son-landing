@@ -6,73 +6,72 @@
       </div>
       <div class="col-md-6">
         <h2 class="text-uppercase mt-3 font-weight-bold text-black">{{'CONTACT.TITLE' | translate }}</h2>
-        <form [formGroup]='contactForm' (ngSubmit)='submit()'>
+        <form [formGroup]='contactForm'>
           <div class="row">
             <div class="col-lg-12">
               <div class="form-group">
-                <input type="text" 
-                       class="form-control mt-2" 
-                       [placeholder]="'CONTACT.NAME.PLACEHOLDER' | translate" 
+                <input type="text"
+                       class="form-control mt-2"
+                       [placeholder]="'CONTACT.NAME.PLACEHOLDER' | translate"
                        formControlName="name"
-                       [class.is-invalid]='nameNoValid'>
-                       <small *ngIf='nameNoValid'
+                       [class.is-invalid]="formInputNoValid('name')">
+                       <small *ngIf="formInputNoValid('name')"
                               class="form-text text-danger">{{'CONTACT.NAME.ERROR' | translate}}
                        </small>
               </div>
-
             </div>
             <div class="col-lg-6">
               <div class="form-group">
-                <input type="email" 
-                       class="form-control mt-2" 
-                       [placeholder]="'CONTACT.EMAIL.PLACEHOLDER' | translate" 
+                <input type="email"
+                       class="form-control mt-2"
+                       [placeholder]="'CONTACT.EMAIL.PLACEHOLDER' | translate"
                        formControlName="email"
-                       [class.is-invalid]='emailNoValid'>
-                       <small *ngIf='emailNoValid'
+                       [class.is-invalid]="formInputNoValid('email')">
+                       <small *ngIf="formInputNoValid('email')"
                               class="form-text text-danger">{{'CONTACT.EMAIL.ERROR' | translate}}
                        </small>
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">
-                <input type="number" 
-                       class="form-control mt-2" 
+                <input type="number"
+                       class="form-control mt-2"
                        [placeholder]="'CONTACT.PHONE.PLACEHOLDER' | translate"
                        formControlName='phoneNumber'
-                       [class.is-invalid]='phoneNumberNoValid'>
-                       <small *ngIf='phoneNumberNoValid'
+                       [class.is-invalid]="formInputNoValid('phoneNumber')">
+                       <small *ngIf="formInputNoValid('phoneNumber')"
                               class="form-text text-danger">{{'CONTACT.PHONE.ERROR' | translate}}
                        </small>
               </div>
             </div>
             <div class="col-12">
               <div class="form-group">
-                <textarea class="form-control" 
-                          id="exampleFormControlTextarea1" 
-                          [placeholder]="'CONTACT.MESSAGE.PLACEHOLDER' | translate" 
+                <textarea class="form-control"
+                          id="exampleFormControlTextarea1"
+                          [placeholder]="'CONTACT.MESSAGE.PLACEHOLDER' | translate"
                           rows="3"
                           formControlName="message"
-                          [class.is-invalid]='messageNoValid'>
+                          [class.is-invalid]="formInputNoValid('message')">
                 </textarea>
-                <small *ngIf='messageNoValid'
+                <small *ngIf="formInputNoValid('message')"
                         class="form-text text-danger">{{'CONTACT.MESSAGE.ERROR' | translate}}
                 </small>
               </div>
             </div>
-            
+
             <div class="col-12">
               <div class="form-group">
                 <div class="form-check">
-                  <input class="form-check-input" 
-                        type="checkbox" 
-                        value="" 
-                        id="invalidCheck2" 
+                  <input class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="invalidCheck2"
                         formControlName='policies'
-                        [class.is-invalid]='policiesNoValid'>
+                        [class.is-invalid]="formInputNoValid('policies')">
                   <label class="form-check-label" for="invalidCheck2">
                     {{'CONTACT.POLICIES.PLACEHOLDER' | translate}}
                   </label>
-                  <small *ngIf='policiesNoValid'
+                  <small *ngIf="formInputNoValid('policies')"
                           class="form-text text-danger"> {{'CONTACT.POLICIES.ERROR' | translate}}
                   </small>
                 </div>
@@ -81,21 +80,21 @@
               <div class="col-12">
                 <div class="form-group"
                      formGroupName="recaptchaReactive">
-                  <re-captcha (resolved)="resolved($event)"  
-                              siteKey='6LfnXbMZAAAAAC8H3gDop54mO976thXpOX4ql7o4'>  
+                  <re-captcha #recaptchaComponent (resolved)="resolved($event)"
+                              siteKey='{{captchaKey}}'>
                   </re-captcha>
-                  <input class="form-check-input sr-only" 
-                          type="checkbox" 
-                          value="" 
+                  <input class="form-check-input sr-only"
+                          type="checkbox"
                           formControlName='captcha'
-                          [class.is-invalid]='captchaNoValid'>
-                  <small *ngIf='captchaNoValid'
+                          [class.is-invalid]="formInputNoValid('recaptchaReactive.captcha')">
+                  <small *ngIf="formInputNoValid('recaptchaReactive.captcha')"
                          class="form-text text-danger"> {{'CONTACT.CAPTCHA.ERROR' | translate}}
                   </small>
               </div>
             </div>
             <div class="col-12">
-              <button class="btn btn-primary" type="submit">Enviar</button>
+              <button class="btn btn-primary" (click)="submit()">{{'BUTTONS.SEND' | translate}}</button>
+              <button class="btn btn-warning" (click)="reset()">{{'BUTTONS.RESET' | translate}}</button>
             </div>
           </div>
         </form>
