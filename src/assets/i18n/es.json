@@ -11,7 +11,37 @@
   },
   "HOME": {
     "TITLE": "!Bienvenido a la fundación PetSon!",
-    "SUB_TITLE": "Esta fundación pretende ayudarte a encontrar tu próxima mascota, o como nosotros lo llamamos, tu futuro hijo."
+    "SUB_TITLE": "Esta fundación pretende ayudarte a encontrar tu próxima mascota, o como nosotros lo llamamos, tu futuro hijo.",
+    "MISION": {
+      "TITLE": "Misión",
+      "TEXT": "La fundación PetSon tiene como objetivo principal velar, vigilar y proteger todas las mascotas de la ciudad de Medellín y sus alrededores con mira a nivel nacional y latino america, realizando diversas actividades en pro de las mascotas."
+    },
+    "VISION": {
+      "TITLE": "Visión",
+      "TEXT": "Para el 2023, PetSon funcionará a nivel latino americano abriendo sedes en los países más afectados por esta problemática"
+    },
+    "ADOPTERSREVIEW": {
+      "TITLE": "Comentarios de nuestros adoptantes",
+      "NAMES": {
+        "1": "Armando Estaban Quito",
+        "2": "Rita Freises" 
+      },
+      "REVIEWS": {
+        "1": "Me encanta la labor que hacen por las mascotas",
+        "2": "!Enconté mi mascota gracias a su labor!."
+      }
+    },
+    "ADOPTIONDAYS": {
+      "TITLE": "Jornadas de adopcióm",
+      "TEXT": "Vista previa de nuestras jornadas de adopción, si quieres conocer nuestra próxima jornada mira nuestra",
+      "CONTACT": "página de contácto.",
+      "LASTDATE": "Junio 10 de 2020"
+    },
+    "SPONSORS": {
+      "TITLE": "¿Quieres ser parte de PetSon?",
+      "TEXT": "Puedes ser parte de la fundación apoyándonos comprando nuestros productos o siendo uno de nuestros",
+      "LINKTEXT": "patrocinadores."
+    }
   },
   "CONTACT":{
     "TITLE": "CONTÁCTO",
@@ -44,5 +74,28 @@
   "BUTTONS": {
     "SEND": "Enviar",
     "RESET": "Limpiar"
+  },
+  "FOOTER": {
+    "SOCIAL": "Síguenos en nuestras redes sociales",
+    "COPY_RIGTH": "Fundación PetSon",
+    "SERVICES": {
+      "TITLE": "Servicios",
+      "RESCUES": "Rescates",
+      "ADOPTIONS": "Adopciones",
+      "SHUELTER": "Albergue",
+      "GRAVEYARD": "Cementerio",
+      "ACCESSORIES": "Accesorios"
+    },
+    "PRODUCTS": {
+      "TITLE": "Productos",
+      "HATS": "Gorras",
+      "SHIRTS": "Camisas",
+      "SCARVES": "Pañoletas"
+    }
+  },
+  "TEAM": {
+    "NAME": "Nombre",
+    "DESCRIPTION": "Descripción",
+    "ROLE": "Rol"
   }
 }

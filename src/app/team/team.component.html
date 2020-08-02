@@ -1,13 +1,12 @@
 <div class="container">
-    <div style="padding: 16px" class="card-deck">
-        <div *ngFor="let teamMember of teamMembers$ | async" class="card mb-4">
-            <img class="card-img-top img-fluid" [src]="teamMember.avatar" alt="Card image cap">
-            <div class="card-body">
-                <h4 class="card-title">Nombre: {{teamMember.name}}</h4>
-                <p class="card-text">Descripción: {{teamMember.description}}</p>
-                <p class="card-text"><small class="text-muted">Rol: {{teamMember.role}}</small></p>
-                <!--<pre>{{teamMember | json}}</pre>-->
-            </div>
-        </div>
+  <div style="padding: 16px" class="card-deck">
+    <div *ngFor="let teamMember of teamMembers$ | async" class="card mb-4">
+      <img class="card-img-top img-fluid" [src]="teamMember.avatar" alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title">{{'TEAM.NAME' | translate}}: {{teamMember.name}}</h4>
+        <p class="card-text">{{'TEAM.DESCRIPTION' | translate}}: {{teamMember.description}}</p>
+        <p class="card-text"><small class="text-muted">{{'TEAM.ROLE' | translate}}: {{teamMember.role}}</small></p>
+      </div>
     </div>
+  </div>
 </div>
