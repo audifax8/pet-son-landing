@@ -1,116 +1,79 @@
 <!-- Footer -->
 <footer class="page-footer font-small unique-color-dark">
-    <div class="bg-primary">
-      <div class="container">
-        <!-- Grid row-->
-        <div class="row py-4 d-flex align-items-center">
-          <!-- Grid column -->
-          <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-            <h4 class="text-white mb-0">Síguenos en nuestras redes sociales</h4>
-          </div>
-          <!-- Grid column -->
-          <!-- Grid column -->
-          <div class="col-md-6 col-lg-7 text-center text-md-right">
-            <!-- Facebook -->
-            <a href="https://www.facebook.com/FundacionPetSon/" target="_blank" style="color: white">
-              <i class="fab fa-facebook fa-3x pr-4"></i>
-            </a>
-            <!-- Twitter -->
-            <!--<a href="#" target="_blank" style="color: white">
-              <i class="fab fa-twitter fa-3x pr-4"> </i>
-            </a>-->
-            <!--Linkedin -->
-            <!--<a href="#" target="_blank" style="color: white">
-              <i class="fab fa-linkedin fa-3x pr-4" target="_blank"></i>
-            </a>-->
-            <!--Instagram-->
-            <a href="https://www.instagram.com/petsonmde/?hl=es-la" target="_blank" style="color: white">
-              <i class="fab fa-instagram fa-3x pr-4"> </i>
-            </a>
-          </div>
-          <!-- Grid column -->
-        </div>
-        <!-- Grid row-->
-      </div>
-    </div>
-    <!-- Footer Links -->
-    <div class="container text-center text-md-left mt-5">
-
-      <!-- Grid row -->
-      <div class="row mt-3">
+  <!-- beging blue var -->
+  <div class="bg-primary">
+    <div class="container">
+      <!-- Grid row-->
+      <div class="row py-4 d-flex align-items-center">
         <!-- Grid column -->
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-          <!-- Content -->
-          <h6 class="text-uppercase font-weight-bold">Fundación PetSon</h6>
-          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-          <p class="text-primary">
-            <a>Rescates</a>
-          </p>
-          <p class="text-primary">
-            <a>Adopciones</a>
-          </p>
-          <p class="text-primary">
-            <a>Albergue</a>
-          </p>
-          <p class="text-primary">
-            <a>Cementerio</a>
-          </p>
-          <p class="text-primary">
-            <a>Accesorios</a>
-          </p>
+        <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+          <h4 class="text-white mb-0">{{footerInfo.social.title | translate}}</h4>
         </div>
         <!-- Grid column -->
         <!-- Grid column -->
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase font-weight-bold">Patrocinadores</h6>
-          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-          <p class="text-primary text-center">
-            <a>Escuela de adistramiento canino Arca de Noé</a>
-          </p>
-          <p class="text-primary text-center">
-            <a>Domicopias</a>
-          </p>
-        </div>
-        <!-- Grid column -->
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase font-weight-bold">Productos</h6>
-          <hr class="deep-purple accent-2 d-inline-block mx-auto" style="width: 60px;">
-          <p class="text-center text-primary">
-            <span class="badge badge-primary">Gorras</span>
-          </p>
-          <p class="text-center text-primary">
-            <span class="badge badge-primary">Camisas</span>
-          </p>
-          <p class="text-center text-primary">
-            <span class="badge badge-primary">Pañoletas</span>
-          </p>
-        </div>
-        <!-- Grid column -->
-        <!-- Grid column -->
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase font-weight-bold">Contácto</h6>
-          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-          <p class="text-primary">
-            <i class="fas fa-home mr-3"></i> Medellín, Colombia
-          </p>
-          <p class="text-primary">
-            <i class="fas fa-envelope mr-3"></i> petson@gmail.com
-          </p>
-          <p class="text-primary">
-            <i class="fas fa-phone mr-3"></i> + 01 234 567 88
-          </p>
+        <div class="col-md-6 col-lg-7 text-center text-md-right">
+          <a
+            *ngFor="let element of footerInfo.social.elements"
+            href="{{element.url}}"
+            target="_blank"
+            style="color: white"
+          >
+            <i class="fab {{element.icon}} fa-3x pr-4"></i>
+          </a>
         </div>
         <!-- Grid column -->
       </div>
-      <!-- Grid row -->
+      <!-- Grid row-->
     </div>
-    <!-- Footer Links -->
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3 text-primary">© 2020 Fundación PetSon</div>
-    <!-- Copyright -->
-  </footer>
-  <!-- Footer -->
+  </div>
+  <!-- end blue var -->
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left mt-5">
+    <!-- Grid row -->
+    <div class="row mt-3">
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+        <!-- Content -->
+        <h6 class="text-uppercase font-weight-bold text-center">{{footerInfo.services.title | translate}}</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p class="text-primary text-center" *ngFor="let element of footerInfo.services.elements">
+          <a>{{element | translate}}</a>
+        </p>
+      </div>
+      <!-- Grid column -->
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+        <h6 class="text-uppercase font-weight-bold text-center">{{footerInfo.sponsors.title | translate}}</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p class="text-primary text-center" *ngFor="let element of footerInfo.sponsors.elements">
+          <a>{{element | translate}}</a>
+        </p>
+      </div>
+      <!-- Grid column -->
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+        <h6 class="text-uppercase font-weight-bold text-center">{{footerInfo.products.title | translate}}</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p class="text-center text-primary" *ngFor="let element of footerInfo.products.elements">
+          <span class="badge badge-primary">{{element | translate}}</span>
+        </p>
+      </div>
+      <!-- Grid column -->
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+        <h6 class="text-uppercase font-weight-bold text-center">{{footerInfo.contact.title | translate}}</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p class="text-primary" *ngFor="let element of footerInfo.contact.elements">
+          <i class="fas {{element.icon}} mr-3"></i> {{element.value}}
+        </p>
+      </div>
+      <!-- Grid column -->
+    </div>
+    <!-- Grid row -->
+  </div>
+  <!-- Footer Links -->
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3 text-primary">© 2020 {{footerInfo.copyRight | translate}}</div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
