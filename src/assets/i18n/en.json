@@ -20,7 +20,7 @@
       "TITLE": "Vision",
       "TEXT": "By 2023, PerSon operates at the Latin American level, opening offices in the countries most affected by this problem."
     },
-    "ADOPTERSREVIEW": {
+    "ADOPTERS_REVIEW": {
       "TITLE": "Comments from our adopters",
       "NAMES": {
         "1": "Armando Estaban Quito",
@@ -31,21 +31,21 @@
         "2": "I found my pet thanks to their labour!"
       }
     },
-    "ADOPTIONDAYS": {
+    "ADOPTION_DAYS": {
       "TITLE" : "Adoption days",
       "TEXT" : "Preview of our adoption days, if you want to know our next day look at our",
       "CONTACT": "contact page.",
-      "LASTDATE": "June 22nd 2020"
+      "LAST_DATE": "June 22nd 2020"
     },
     "SPONSORS": {
       "TITLE": "Wanna be part of PetSon?",
       "TEXT": "You can be part of the foundation by supporting us by buying our products or by being one of our",
-      "LINKTEXT": "sponsors."
+      "LINK_TEXT": "sponsors."
     }
   },
   "CONTACT":{
     "TITLE": "CONTACT",
-    "SOCIALMEDIA": "Follow us",
+    "SOCIAL_MEDIA": "Follow us",
     "NAME": {
       "PLACEHOLDER": "Contact",
       "ERROR": "Enter a name"
@@ -82,7 +82,7 @@
       "TITLE": "Services",
       "RESCUES": "Rescues",
       "ADOPTIONS": "Adoptions",
-      "SHUELTER": "Shuelter",
+      "SHELTER": "Shelter",
       "GRAVEYARD": "Garveyard",
       "ACCESSORIES": "Accesories"
     },

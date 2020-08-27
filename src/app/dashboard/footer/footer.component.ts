@@ -34,7 +34,7 @@ export class FooterComponent {
       elements: [
         'FOOTER.SERVICES.RESCUES',
         'FOOTER.SERVICES.ADOPTIONS',
-        'FOOTER.SERVICES.SHUELTER',
+        'FOOTER.SERVICES.SHELTER',
         'FOOTER.SERVICES.GRAVEYARD',
         'FOOTER.SERVICES.ACCESSORIES'
       ]

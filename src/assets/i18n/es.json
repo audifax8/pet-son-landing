@@ -20,7 +20,7 @@
       "TITLE": "Visión",
       "TEXT": "Para el 2023, PetSon funcionará a nivel latino americano abriendo sedes en los países más afectados por esta problemática"
     },
-    "ADOPTERSREVIEW": {
+    "ADOPTERS_REVIEW": {
       "TITLE": "Comentarios de nuestros adoptantes",
       "NAMES": {
         "1": "Armando Estaban Quito",
@@ -31,21 +31,21 @@
         "2": "!Enconté mi mascota gracias a su labor!."
       }
     },
-    "ADOPTIONDAYS": {
+    "ADOPTION_DAYS": {
       "TITLE": "Jornadas de adopcióm",
       "TEXT": "Vista previa de nuestras jornadas de adopción, si quieres conocer nuestra próxima jornada mira nuestra",
       "CONTACT": "página de contácto.",
-      "LASTDATE": "Junio 10 de 2020"
+      "LAST_DATE": "Junio 10 de 2020"
     },
     "SPONSORS": {
       "TITLE": "¿Quieres ser parte de PetSon?",
       "TEXT": "Puedes ser parte de la fundación apoyándonos comprando nuestros productos o siendo uno de nuestros",
-      "LINKTEXT": "patrocinadores."
+      "LINK_TEXT": "patrocinadores."
     }
   },
   "CONTACT":{
     "TITLE": "CONTÁCTO",
-    "SOCIALMEDIA": "Síguenos en nuestras redes sociales",
+    "SOCIAL_MEDIA": "Síguenos en nuestras redes sociales",
     "NAME": {
       "PLACEHOLDER": "Contácto",
       "ERROR": "Ingrese un nombre"
@@ -82,7 +82,7 @@
       "TITLE": "Servicios",
       "RESCUES": "Rescates",
       "ADOPTIONS": "Adopciones",
-      "SHUELTER": "Albergue",
+      "SHELTER": "Albergue",
       "GRAVEYARD": "Cementerio",
       "ACCESSORIES": "Accesorios"
     },
