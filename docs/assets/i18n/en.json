@@ -15,7 +15,7 @@
   },
   "CONTACT":{
     "TITLE": "CONTACT",
-    "SOCIALMEDIA": "Follow us",
+    "SOCIAL_MEDIA": "Follow us",
     "NAME": {
       "PLACEHOLDER": "Contact",
       "ERROR": "Enter a name"

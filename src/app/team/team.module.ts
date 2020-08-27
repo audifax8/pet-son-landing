@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { TeamComponent } from './team.component';
-import { MemberCardComponent } from './member-card/member-card.component';
 import { TeamService } from './team.service';
+
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   { path: '', component: TeamComponent }
@@ -11,12 +12,12 @@ const routes: Routes = [
 
 const MODULES = [
   CommonModule,
-  RouterModule.forChild(routes)
+  RouterModule.forChild(routes),
+  TranslateModule.forChild()
 ];
 
 const COMPONENTS = [
-  TeamComponent,
-  MemberCardComponent
+  TeamComponent
 ];
 
 const SERVICES = [

@@ -11,11 +11,41 @@
   },
   "HOME": {
     "TITLE": "!Welcome to PetSon foundation!",
-    "SUB_TITLE": "This foundation wants helping you to find your next pet or like we call it your future son!"
+    "SUB_TITLE": "This foundation wants helping you to find your next pet or like we call it your future son!",
+    "MISION": {
+      "TITLE": "Mision",
+      "TEXT": "The PetSon Foundation's main objective is to watch over, monitor and protect all pets in the city of Medellín and its surroundings, with a national and Latin American view, to carry out various activities in favor of pets."
+    },
+    "VISION": {
+      "TITLE": "Vision",
+      "TEXT": "By 2023, PerSon operates at the Latin American level, opening offices in the countries most affected by this problem."
+    },
+    "ADOPTERS_REVIEW": {
+      "TITLE": "Comments from our adopters",
+      "NAMES": {
+        "1": "Armando Estaban Quito",
+        "2": "Rita Freises"
+      },
+      "REVIEWS": {
+        "1": "I love the work the foundation does for pets",
+        "2": "I found my pet thanks to their labour!"
+      }
+    },
+    "ADOPTION_DAYS": {
+      "TITLE" : "Adoption days",
+      "TEXT" : "Preview of our adoption days, if you want to know our next day look at our",
+      "CONTACT": "contact page.",
+      "LAST_DATE": "June 22nd 2020"
+    },
+    "SPONSORS": {
+      "TITLE": "Wanna be part of PetSon?",
+      "TEXT": "You can be part of the foundation by supporting us by buying our products or by being one of our",
+      "LINK_TEXT": "sponsors."
+    }
   },
   "CONTACT":{
     "TITLE": "CONTACT",
-    "SOCIALMEDIA": "Follow us",
+    "SOCIAL_MEDIA": "Follow us",
     "NAME": {
       "PLACEHOLDER": "Contact",
       "ERROR": "Enter a name"
@@ -44,5 +74,28 @@
   "BUTTONS": {
     "SEND": "Send",
     "RESET": "Reset"
+  },
+  "FOOTER": {
+    "SOCIAL": "Follow us on our social networks",
+    "COPY_RIGTH": "PetSon Foundation",
+    "SERVICES": {
+      "TITLE": "Services",
+      "RESCUES": "Rescues",
+      "ADOPTIONS": "Adoptions",
+      "SHELTER": "Shelter",
+      "GRAVEYARD": "Garveyard",
+      "ACCESSORIES": "Accesories"
+    },
+    "PRODUCTS": {
+      "TITLE": "Products",
+      "HATS": "Hats",
+      "SHIRTS": "Shirts",
+      "SCARVES": "Scarves"
+    }
+  },
+  "TEAM": {
+    "NAME": "Name",
+    "DESCRIPTION": "Description",
+    "ROLE": "Role"
   }
 }
